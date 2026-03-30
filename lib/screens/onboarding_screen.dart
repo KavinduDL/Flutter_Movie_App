@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_movie_app/screens/auth_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -88,13 +89,23 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 ],
               ),
-              SizedBox(height:5),
+              SizedBox(height: 5),
               IconButton(
                 iconSize: 30,
-                onPressed: () {},
-                icon: Icon(Icons.arrow_forward_rounded, color: Colors.indigoAccent),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context)=>AuthScreen()),
+                  );
+                },
+                icon: Icon(
+                  Icons.arrow_forward_rounded,
+                  color: Colors.indigoAccent,
+                ),
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.grey.shade300.withOpacity(0.5)),
+                  backgroundColor: WidgetStateProperty.all(
+                    Colors.grey.shade300.withOpacity(0.5),
+                  ),
                 ),
               ),
               Spacer(),
