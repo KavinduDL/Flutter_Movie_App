@@ -53,9 +53,13 @@ class _AuthScreenState extends State<AuthScreen> {
                         SizedBox(
                           width: 24,
                           height: 24,
-                          child: Image.asset("assets/icons/apple.png",)),
-                        SizedBox(width: 10,),
-                        Text("Login With Apple",style: TextStyle(fontSize: 16),),
+                          child: Image.asset("assets/icons/apple.png"),
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          "Login With Apple",
+                          style: TextStyle(fontSize: 16),
+                        ),
                       ],
                     ),
                   ),
@@ -74,15 +78,17 @@ class _AuthScreenState extends State<AuthScreen> {
                         SizedBox(
                           width: 24,
                           height: 24,
-                          child: Image.asset("assets/icons/Google.png",)),
-                        SizedBox(width: 10,),
-                        Text("Login With Google",style: TextStyle(fontSize: 16),),
+                          child: Image.asset("assets/icons/Google.png"),
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          "Login With Google",
+                          style: TextStyle(fontSize: 16),
+                        ),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
+                  SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -93,7 +99,10 @@ class _AuthScreenState extends State<AuthScreen> {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Text("Or continue with social account",style: TextStyle(color: Colors.grey),),
+                        child: Text(
+                          "Or continue with social account",
+                          style: TextStyle(color: Colors.grey),
+                        ),
                       ),
                       Container(
                         width: 70,
@@ -102,66 +111,77 @@ class _AuthScreenState extends State<AuthScreen> {
                       ),
                     ],
                   ),
+                  SizedBox(height: 30),
                   SizedBox(
-                    height: 30,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    width: 350,
                     child: TextField(
                       decoration: InputDecoration(
-                       label:  Text("Mobile Number"),
-                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Colors.grey
-                        )
-                       )
+                        label: Text("Mobile Number"),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Colors.grey),
+                        ),
                       ),
                     ),
                   ),
+                  SizedBox(height: 12),
                   SizedBox(
-                    height: 12,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    width: 350,
                     child: TextField(
                       decoration: InputDecoration(
                         suffixIcon: Icon(Icons.visibility_off_outlined),
-                       label:  Text("Password"),
-                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Colors.grey
-                        )
-                       ),
+                        label: Text("Password"),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Colors.grey),
+                        ),
                       ),
                     ),
                   ),
                   Align(
                     alignment: AlignmentGeometry.topRight,
                     child: Padding(
-                      padding: const EdgeInsets.only(right: 30,top: 10, bottom: 15),
-                      child: Text("Forget Password?",style: TextStyle(color: Colors.indigoAccent),),
-                    )),
+                      padding: const EdgeInsets.only(
+                        right: 30,
+                        top: 10,
+                        bottom: 15,
+                      ),
+                      child: Text(
+                        "Forget Password?",
+                        style: TextStyle(color: Colors.indigoAccent),
+                      ),
+                    ),
+                  ),
                   Container(
                     width: 340,
                     height: 60,
                     decoration: BoxDecoration(
                       color: Colors.indigoAccent,
-                      borderRadius: BorderRadius.circular(10)
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     child: Center(
-                      child: Text("Login",style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Colors.white
-                      ),),
+                      child: Text(
+                        "Login",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
-                  SizedBox(height: 15,),
-                  Text.rich(TextSpan(text: "Didn't have and account?",children: [
-                    TextSpan(text:" Register",style: TextStyle(color: Colors.indigoAccent))
-                  ]))
+                  SizedBox(height: 15),
+                  Text.rich(
+                    TextSpan(
+                      text: "Didn't have and account?",
+                      children: [
+                        TextSpan(
+                          text: " Register",
+                          style: TextStyle(color: Colors.indigoAccent),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
