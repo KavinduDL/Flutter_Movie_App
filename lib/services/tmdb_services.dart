@@ -43,4 +43,35 @@ class MoiveServices {
       throw Exception("Faild to Load Movies");
     }
   }
+
+  Future<List<MovieModel>> getTopRatedMovies() async {
+    var getTopRatedMoviesEndpoint = baseurl + "top_rated?api_key=" + apikey;
+
+    final response = await http.get(Uri.parse(getTopRatedMoviesEndpoint));
+    if (response.statusCode == 200) {
+      Map<String, dynamic> body = jsonDecode(response.body);
+      List<dynamic> results = body["results"];
+      List<MovieModel> movies = results
+          .map(
+            (movieData) =>
+                MovieModel.fromJson(movieData as Map<String, dynamic>),
+          )
+          .toList();
+      return movies;
+    } else {
+      throw Exception("Faild to load Movies");
+    }
+  }
+
+  Future<MovieModel> getMovieDetailsById(MovieModel movieModel) async {
+    final endpoint = baseurl + "${movieModel.id}?api_key=" + apikey;
+    final response = await http.get(Uri.parse(endpoint));
+    if (response.statusCode == 200) {
+      final movieData = jsonDecode(response.body);
+      MovieModel movie = MovieModel.fromJson(movieData);
+      return movie;
+    } else {
+      throw Exception("Faild to Load Movie");
+    }
+  }
 }

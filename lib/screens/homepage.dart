@@ -152,6 +152,10 @@ class _HomepageState extends State<Homepage> {
                   title: "Popular Movies",
                   future: MoiveServices().getPopularMovies(),
                 ),
+                MovieListView(
+                  future: MoiveServices().getTopRatedMovies(),
+                  title: "Top Rated Movies",
+                ),
               ],
             ),
           ),

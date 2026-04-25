@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:new_movie_app/models/custom_movie_model.dart';
+import 'package:new_movie_app/screens/movie_view.dart';
 import 'package:new_movie_app/services/tmdb_services.dart';
 
 class MovieListView extends StatefulWidget {
@@ -51,78 +53,87 @@ class _MovieListViewState extends State<MovieListView> {
                   scrollDirection: Axis.horizontal,
                   itemCount: movies.length,
                   itemBuilder: (context, index) {
-                    final movie = movies[index];
+                    final movie = movies[index] as MovieModel;
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        height: 200,
-                        width: 130,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 130,
-                              height: 200,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                image: DecorationImage(
-                                  image: NetworkImage(movie.posterPath),
-                                  fit: BoxFit.cover,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MovieView(movie: movie),
+                            ),
+                          );
+                        },
+                        child: SizedBox(
+                          height: 200,
+                          width: 130,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 130,
+                                height: 200,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: DecorationImage(
+                                    image: NetworkImage(movie.posterPath),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ),
-                              child: Stack(
-                                children: [
-                                  Align(
-                                    alignment: Alignment.topRight,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: Container(
-                                        padding: EdgeInsets.symmetric(
-                                          horizontal: 8,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(
-                                            15,
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topRight,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: 8,
                                           ),
-                                          color: movie.voteAverage < 5.0
-                                              ? Colors.red.shade900
-                                              : Colors.green.shade900,
-                                        ),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Text(
-                                              movie.voteAverage.toStringAsFixed(
-                                                1,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                              15,
+                                            ),
+                                            color: movie.voteAverage < 5.0
+                                                ? Colors.red.shade900
+                                                : Colors.green.shade900,
+                                          ),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text(
+                                                movie.voteAverage
+                                                    .toStringAsFixed(1),
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                ),
                                               ),
-                                              style: TextStyle(
+                                              Icon(
+                                                Icons.star_rounded,
                                                 color: Colors.white,
+                                                size: 15,
                                               ),
-                                            ),
-                                            Icon(
-                                              Icons.star_rounded,
-                                              color: Colors.white,
-                                              size: 15,
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            Text(
-                              movie.title,
-                              maxLines: 1,
-                              style: TextStyle(
-                                overflow: TextOverflow.ellipsis,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
+                              Text(
+                                movie.title,
+                                maxLines: 1,
+                                style: TextStyle(
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
-                            ),
-                            Text(movie.releaseDate),
-                          ],
+                              Text(movie.releaseDate),
+                            ],
+                          ),
                         ),
                       ),
                     );
