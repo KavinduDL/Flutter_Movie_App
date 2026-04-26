@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_movie_app/models/custom_movie_model.dart';
 import 'package:new_movie_app/screens/movie_view.dart';
-import 'package:new_movie_app/services/tmdb_services.dart';
 
 class MovieListView extends StatefulWidget {
   final String title;

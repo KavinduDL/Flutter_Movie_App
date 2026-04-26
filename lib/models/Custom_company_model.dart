@@ -9,8 +9,7 @@ class CompanyModel {
       name: json["name"] as String,
       logo: json["logo_path"] == null
           ? ""
-          : {"https://api.themoviedb.org/3/movie/" + json["logo_path"]}
-                as String,
+          : "https://image.tmdb.org/t/p/w500${json["logo_path"]}",
     );
   }
 }
