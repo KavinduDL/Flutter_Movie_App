@@ -7,7 +7,6 @@ import '../models/custom_actor_model.dart';
 class MoiveServices {
   final String baseurl = "https://api.themoviedb.org/3/movie/";
   final String apikey = "e16d138611c55865ab26a0d5a1fb185c";
-
   Future<List<MovieModel>> getNowPlayingMovies() async {
     var getNowMovieEndpoint = baseurl + "now_playing?api_key=" + apikey;
 
@@ -92,6 +91,22 @@ class MoiveServices {
       return actors;
     } else {
       throw Exception("Faild to Load Actor");
+    }
+  }
+
+  Future<List<MovieModel>> getSearchMovies(String query) async {
+    final endpoint =
+        "https://api.themoviedb.org/3/search/movie?api_key=$apikey&query=$query";
+    final response = await http.get(Uri.parse(endpoint));
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = jsonDecode(response.body);
+      final List<dynamic> results = data['results'];
+      List<MovieModel> movies = results
+          .map((json) => MovieModel.fromJson(json))
+          .toList();
+      return movies;
+    } else {
+      throw Exception("Faild to Load Movie");
     }
   }
 }

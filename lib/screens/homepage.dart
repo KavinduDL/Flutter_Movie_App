@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_movie_app/components/custom_category_card.dart';
+import 'package:new_movie_app/screens/search_view.dart';
 import 'package:new_movie_app/services/tmdb_services.dart';
 import '../components/custome_movie_list_view.dart';
 
@@ -11,6 +12,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  TextEditingController searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.sizeOf(context);
@@ -61,14 +63,10 @@ class _HomepageState extends State<Homepage> {
                     SizedBox(
                       width: screenSize.width * 0.75,
                       child: TextField(
+                        controller: searchController,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.grey.shade200,
-                          prefixIcon: Icon(
-                            size: 25,
-                            Icons.search_rounded,
-                            color: Colors.indigoAccent,
-                          ),
                           hintText: "Search",
                           hintStyle: TextStyle(
                             color: Colors.indigoAccent,
@@ -83,7 +81,20 @@ class _HomepageState extends State<Homepage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        MoiveServices().getNowPlayingMovies();
+                        if (searchController.text.isNotEmpty) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  SearchView(query: searchController.text),
+                            ),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Please enter a query")),
+                          );
+                        }
+                        ;
                       },
                       child: Container(
                         width: 50,
@@ -92,10 +103,7 @@ class _HomepageState extends State<Homepage> {
                           color: Colors.indigoAccent,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Icon(
-                          Icons.filter_alt_rounded,
-                          color: Colors.white,
-                        ),
+                        child: Icon(Icons.search_rounded, color: Colors.white),
                       ),
                     ),
                   ],
