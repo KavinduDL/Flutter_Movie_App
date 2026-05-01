@@ -228,15 +228,14 @@ class _MovieViewState extends State<MovieView> {
                                     title: Text(
                                       movieDetails.companies![index].name,
                                     ),
-                                    leading: movieDetails.companies![index].logo.isNotEmpty
-                                        ? Image.network(
-                                            movieDetails.companies![index].logo,
-                                            height: 50,
-                                            width: 50,
-                                            errorBuilder: (context, error, stackTrace) =>
-                                                const Icon(Icons.business, size: 50),
-                                          )
-                                        : const Icon(Icons.business, size: 50),
+                                    leading: Image.network(
+                                      movieDetails.companies![index].logo ==
+                                              null
+                                          ? "https://www.creativefabrica.com/wp-content/uploads/2022/10/04/Architecture-building-company-icon-Graphics-40076545-1.jpg"
+                                          : movieDetails.companies![index].logo,
+                                      height: 100,
+                                      width: 100,
+                                    ),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),
                                     ),
